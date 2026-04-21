@@ -42,7 +42,13 @@ def get_ai_joke():
     """
     Fetches a joke from Gemini using the same structure as a CURL command.
     """
-    api_key = os.getenv("GEMINI_API_KEY")
+    api_key = os.getenv("GEMINI_API_KEY")    
+    if not api_key:
+        return (
+            "ERROR: Missing API Key! Please create a '.env' file "
+            "and add 'GEMINI_API_KEY=your_key_here'."
+        )
+        
     url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent"
 
     # Headers - here we mimic the CURL -H flags
